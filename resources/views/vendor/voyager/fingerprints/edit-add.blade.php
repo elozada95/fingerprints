@@ -85,15 +85,81 @@
                                 <!--@php($img_path = public_path().DIRECTORY_SEPARATOR."storage".DIRECTORY_SEPARATOR.$dataTypeContent->image) -->
                                 @php($img_path = URL::to('/').'/storage/'.$dataTypeContent->image)
                                 <div id="fotopath" data-field="{{$img_path}}" ></div>
-                                <canvas id="canvas"></canvas>
-                                <input
-                                    id="brightness"
-                                    type="range" 
-                                    min="-100"
-                                    max="100"
-                                    step="1"
-                                    value="0"
-                                    >
+                                <canvas id="canvas" width="100%"></canvas>
+                                <table width=100%>
+                                    <tr style="padding: 15px;">
+                                        <td width=50% style="padding: 15px;">
+                                            Brightness<br>
+                                            <input
+                                                id="brightness"
+                                                type="range" 
+                                                min="-100"
+                                                max="100"
+                                                step="1"
+                                                value="0"
+                                                >
+                                        </td>
+                                        <td width=50% style="padding: 15px;">
+                                            Saturation<br>
+                                            <input
+                                                id="saturation"
+                                                type="range" 
+                                                min="-100"
+                                                max="100"
+                                                step="1"
+                                                value="0"
+                                                >
+                                        </td>
+                                    </tr>
+                                    <tr style="padding: 15px;">
+                                        <td width=50% style="padding: 15px;">
+                                            Exposure<br>
+                                            <input
+                                                id="exposure"
+                                                type="range" 
+                                                min="-100"
+                                                max="100"
+                                                step="1"
+                                                value="0"
+                                                >
+                                        </td>
+                                        <td width=50% style="padding: 15px;">
+                                            Contrast<br>
+                                            <input
+                                                id="contrast"
+                                                type="range" 
+                                                min="-100"
+                                                max="100"
+                                                step="1"
+                                                value="0"
+                                                >
+                                        </td>
+                                    </tr>
+                                    <tr style="padding: 15px;">
+                                        <td width=50% style="padding: 15px;">
+                                            Vibrance<br>
+                                            <input
+                                                id="vibrance"
+                                                type="range" 
+                                                min="-100"
+                                                max="100"
+                                                step="1"
+                                                value="0"
+                                                >
+                                        </td>
+                                        <td width=50% style="padding: 15px;">
+                                            Sharpen<br>
+                                            <input
+                                                id="sharpen"
+                                                type="range" 
+                                                min="0"
+                                                max="100"
+                                                step="1"
+                                                value="0"
+                                                >
+                                        </td>
+                                    </tr>
+                                </table>
                             @endif
 
 
@@ -226,11 +292,15 @@
 
             function applyFilters() {
                 var brightness = parseInt($('#brightness').val());
-                console.log(brightness)
+                var saturation = parseInt($('#saturation').val());
+                var exposure = parseInt($('#exposure').val());
+                var contrast = parseInt($('#contrast').val());
+                var vibrance = parseInt($('#vibrance').val());
+                var sharpen = parseInt($('#sharpen').val());
 
                 Caman('#canvas', img, function() {
                     this.revert(false);
-                    this.brightness(brightness).render();
+                    this.brightness(brightness).saturation(saturation).exposure(exposure).contrast(contrast).vibrance(vibrance).sharpen(sharpen).render();
                 });
             }
         });
