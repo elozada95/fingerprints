@@ -79,7 +79,6 @@
                                 @endif
                             @endforeach
 
-
                             <!-- Editar -->
                             @if(!is_null($dataTypeContent->getKey()))
                                 <!--@php($img_path = public_path().DIRECTORY_SEPARATOR."storage".DIRECTORY_SEPARATOR.$dataTypeContent->image) -->
@@ -92,22 +91,24 @@
                                             Brightness<br>
                                             <input
                                                 id="brightness"
+                                                name="brightness"
                                                 type="range" 
                                                 min="-100"
                                                 max="100"
                                                 step="1"
-                                                value="0"
+                                                value="{{$dataTypeContent->brightness}}"
                                                 >
                                         </td>
                                         <td width=50% style="padding: 15px;">
                                             Saturation<br>
                                             <input
                                                 id="saturation"
+                                                name="saturation"
                                                 type="range" 
                                                 min="-100"
                                                 max="100"
                                                 step="1"
-                                                value="0"
+                                                value="{{$dataTypeContent->saturation}}"
                                                 >
                                         </td>
                                     </tr>
@@ -116,22 +117,24 @@
                                             Exposure<br>
                                             <input
                                                 id="exposure"
+                                                name="exposure"
                                                 type="range" 
                                                 min="-100"
                                                 max="100"
                                                 step="1"
-                                                value="0"
+                                                value="{{$dataTypeContent->exposure}}"
                                                 >
                                         </td>
                                         <td width=50% style="padding: 15px;">
                                             Contrast<br>
                                             <input
                                                 id="contrast"
+                                                name="contrast"
                                                 type="range" 
                                                 min="-100"
                                                 max="100"
                                                 step="1"
-                                                value="0"
+                                                value="{{$dataTypeContent->contrast}}"
                                                 >
                                         </td>
                                     </tr>
@@ -140,22 +143,24 @@
                                             Vibrance<br>
                                             <input
                                                 id="vibrance"
+                                                name="vibrance"
                                                 type="range" 
                                                 min="-100"
                                                 max="100"
                                                 step="1"
-                                                value="0"
+                                                value="{{$dataTypeContent->vibrance}}"
                                                 >
                                         </td>
                                         <td width=50% style="padding: 15px;">
                                             Sharpen<br>
                                             <input
                                                 id="sharpen"
+                                                name="sharpen"
                                                 type="range" 
                                                 min="0"
                                                 max="100"
                                                 step="1"
-                                                value="0"
+                                                value="{{$dataTypeContent->sharpen}}"
                                                 >
                                         </td>
                                     </tr>
@@ -285,6 +290,7 @@
                 canvas.width = img.width;
                 canvas.height = img.height;
                 ctx.drawImage(img, 0, 0, img.width, img.height);
+                applyFilters();
             }
 
             /* As soon as slider value changes call applyFilters */
